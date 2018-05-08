@@ -5,8 +5,16 @@ headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KH
 page = requests.post('https://www.acs.ncsu.edu/php/coursecat/search.php', data={'current_strm':'2188', 'subject':'CSC - Computer Science',
  'term':'2188','course-inequality':'=' ,'course-number':'501' })
 
-#result = requests.get("https://www.acs.ncsu.edu/php/coursecat/index.php")
+k = page.json()
 
-c = page.content
+print(k['html'])
 
-print(c)
+soup = BeautifulSoup(k['html'], "html.parser")
+
+#table = soup.find('table', attrs={'summary':'This table details the sections of CSC 501 based on the criteria submitted in the search form.'})
+table = soup.find('<td>001</td>')
+table_body = table.find('tbody')
+
+rows = table_body.find_all('tr')
+for row in rows:
+    print(row)
