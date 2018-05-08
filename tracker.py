@@ -1,27 +1,35 @@
 from bs4 import BeautifulSoup
 import requests
 import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 def send_email(message):
     mail_from = "ncsucarrental@gmail.com"
     mail_to = "araja2@ncsu.edu"
 
-    username = "ncsucarrental"
-    password = "testing@123"
+    username = "ncsucarrental@gmail.com"
+    password = "i@mbatman"
 
-    server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
-    #server.connect('smtp.gmail.com', 587)
-    server.ehlo()
+    msg = MIMEMultipart()
+    msg['From'] = mail_from
+    msg['To'] = mail_to
+    msg['Subject'] = "Course status tracker"
+
+    msg.attach(MIMEText(message, 'plain'))
+
+    server = smtplib.SMTP("smtp.gmail.com", 587)
     server.starttls()
     server.ehlo()
     server.login(username, password)
 
-    server.sendmail(mail_from, mail_to , message)
+    server.sendmail(mail_from, mail_to , msg.as_string())
 
 def run():
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36'}
     url = 'https://www.acs.ncsu.edu/php/coursecat/search.php'
     fall_2018 = '2188'
+    msg = ''
 
     course_list = [{'code':'501', 'strength':'0/70'},{'code':'522', 'strength':'0/110'}]
 
@@ -40,8 +48,11 @@ def run():
         print(class_strength_status)
 
         if course['strength'] not in class_strength_status:
-            send_email(course['code'] + " course now open")
+            msg += course['code'] + " course now open.\n"
         else:
-            send_email(course['code'] + " course still closed")
+            print('Nothing to notify')    
+
+    if msg:
+        send_email(msg)
 
 run()
