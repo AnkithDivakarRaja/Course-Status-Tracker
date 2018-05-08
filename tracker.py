@@ -11,8 +11,14 @@ k = page.json()
 
 soup = BeautifulSoup(k['html'], "html.parser")
 
-#table = soup.find('table', attrs={'summary':'This table details the sections of CSC 501 based on the criteria submitted in the search form.'})
 table = soup.find("table", {"class":"table section-table table-striped table-condensed"})
 table_row = table.find_all('tr')
 row_data = table_row[2].find_all('td')
-current = row_data[3]
+class_strength_status = row_data[3]
+
+full_class = "0/70"
+
+if full_class not in class_strength_status:
+    print("Book now idiot")
+else:
+    print("You are an idiot")
