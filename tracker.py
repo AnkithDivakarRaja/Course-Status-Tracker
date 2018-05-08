@@ -15,7 +15,7 @@ table = soup.find("table", {"class":"table section-table table-striped table-con
 table_row = table.find_all('tr')
 row_data = table_row[2].find_all('td')
 class_strength_status = row_data[3]
-
+print(class_strength_status)
 full_class = "0/70"
 
 if full_class not in class_strength_status:
