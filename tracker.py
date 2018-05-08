@@ -2,23 +2,26 @@ from bs4 import BeautifulSoup
 import requests
 
 headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36'}
-page = requests.post('https://www.acs.ncsu.edu/php/coursecat/search.php', data={'current_strm':'2188', 'subject':'CSC - Computer Science',
- 'term':'2188','course-inequality':'=' ,'course-number':'501' })
+url = 'https://www.acs.ncsu.edu/php/coursecat/search.php'
+fall_2018 = '2188'
 
-k = page.json()
+course_list = [{'code':'501', 'strength':'0/70'},{'code':'522', 'strength':'0/110'}]
 
-#print(k['html'])
+for course in course_list:
+    page = requests.post(url, data={'current_strm': fall_2018, 'subject':'CSC - Computer Science',
+     'term': fall_2018,'course-inequality':'=' ,'course-number': course['code'] })
 
-soup = BeautifulSoup(k['html'], "html.parser")
+    k = page.json()
 
-table = soup.find("table", {"class":"table section-table table-striped table-condensed"})
-table_row = table.find_all('tr')
-row_data = table_row[2].find_all('td')
-class_strength_status = row_data[3]
-print(class_strength_status)
-full_class = "0/70"
+    soup = BeautifulSoup(k['html'], "html.parser")
 
-if full_class not in class_strength_status:
-    print("Book now idiot")
-else:
-    print("You are an idiot")
+    table = soup.find("table", {"class":"table section-table table-striped table-condensed"})
+    table_row = table.find_all('tr')
+    row_data = table_row[2].find_all('td')
+    class_strength_status = row_data[3]
+    print(class_strength_status)
+
+    if course['strength'] not in class_strength_status:
+        print(course['code'] + " course now open")
+    else:
+        print(course['code'] + " course still closed")
