@@ -7,14 +7,12 @@ page = requests.post('https://www.acs.ncsu.edu/php/coursecat/search.php', data={
 
 k = page.json()
 
-print(k['html'])
+#print(k['html'])
 
 soup = BeautifulSoup(k['html'], "html.parser")
 
 #table = soup.find('table', attrs={'summary':'This table details the sections of CSC 501 based on the criteria submitted in the search form.'})
-table = soup.find('<td>001</td>')
-table_body = table.find('tbody')
-
-rows = table_body.find_all('tr')
-for row in rows:
-    print(row)
+table = soup.find("table", {"class":"table section-table table-striped table-condensed"})
+table_row = table.find_all('tr')
+row_data = table_row[2].find_all('td')
+current = row_data[3]
