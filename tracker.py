@@ -50,7 +50,7 @@ def run():
         if course['strength'] not in class_strength_status:
             msg += course['code'] + " course now open.\n"
         else:
-            print('Nothing to notify')    
+            msg += course['code'] + " course still closed.\n"
 
     if msg:
         send_email(msg)
