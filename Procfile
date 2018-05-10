@@ -1,1 +1,1 @@
-web: gunicorn tracker:app
+web: python tracker.py

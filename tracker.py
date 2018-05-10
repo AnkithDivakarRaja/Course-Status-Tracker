@@ -3,9 +3,6 @@ import requests
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from flask import Flask
-
-app = Flask(__name__)
 
 def send_email(message):
     mail_from = "ncsucarrental@gmail.com"
@@ -28,7 +25,6 @@ def send_email(message):
 
     server.sendmail(mail_from, mail_to , msg.as_string())
 
-@app.route("/")
 def run():
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36'}
     url = 'https://www.acs.ncsu.edu/php/coursecat/search.php'
@@ -58,9 +54,5 @@ def run():
 
     if msg:
         send_email(msg)
-    else:
-        msg = "All courses still closed."    
 
-    return msg
-
-app.run()
+run()
