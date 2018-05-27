@@ -31,7 +31,7 @@ def run():
     fall_2018 = '2188'
     msg = ''
 
-    course_list = [{'code':'501', 'strength':'0/70'},{'code':'522', 'strength':'0/110'}]
+    course_list = [{'code':'501', 'strength':'0/80'},{'code':'522', 'strength':'0/115'}]
 
     for course in course_list:
         page = requests.post(url, data={'current_strm': fall_2018, 'subject':'CSC - Computer Science',
@@ -49,7 +49,7 @@ def run():
 
         if course['strength'] not in class_strength_status:
             msg += course['code'] + " course now open.\n"
-            msg += class_strength_status + "\n";
+            msg += str(class_strength_status);
         else:
             print(course['code'] + " course still closed.\n")
 
