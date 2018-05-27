@@ -49,6 +49,7 @@ def run():
 
         if course['strength'] not in class_strength_status:
             msg += course['code'] + " course now open.\n"
+            msg += class_strength_status + "\n";
         else:
             print(course['code'] + " course still closed.\n")
 
