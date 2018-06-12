@@ -31,7 +31,7 @@ def run():
     fall_2018 = '2188'
     msg = ''
 
-    course_list = [{'code':'501', 'strength':'0/80'},{'code':'522', 'strength':'0/115'}]
+    course_list = [{'code':'501', 'strength':'0/80'},{'code':'522', 'strength':'0/120'}]
 
     for course in course_list:
         page = requests.post(url, data={'current_strm': fall_2018, 'subject':'CSC - Computer Science',
