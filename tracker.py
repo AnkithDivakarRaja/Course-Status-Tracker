@@ -5,25 +5,26 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 def send_email(message):
-    mail_from = "ncsucarrental@gmail.com"
-    mail_to = "araja2@ncsu.edu"
-
-    username = "ncsucarrental@gmail.com"
-    password = "i@mbatman"
-
-    msg = MIMEMultipart()
-    msg['From'] = mail_from
-    msg['To'] = mail_to
-    msg['Subject'] = "Course status tracker"
-
-    msg.attach(MIMEText(message, 'plain'))
-
-    server = smtplib.SMTP("smtp.gmail.com", 587)
-    server.starttls()
-    server.ehlo()
-    server.login(username, password)
-
-    server.sendmail(mail_from, mail_to , msg.as_string())
+	mail_from = "ncsucarrental@gmail.com"
+	mail_to = ["araja2@ncsu.edu", "hramach2@ncsu.edu", "nbangal2@ncsu.edu"]
+	
+	username = "ncsucarrental@gmail.com"
+	password = "i@mbatman"
+	
+	for mail_id in mail_to:
+		msg = MIMEMultipart()
+		msg['From'] = mail_from
+		msg['To'] = mail_id
+		msg['Subject'] = "Course status tracker"
+		
+		msg.attach(MIMEText(message, 'plain'))
+		
+		server = smtplib.SMTP("smtp.gmail.com", 587)
+		server.starttls()
+		server.ehlo()
+		server.login(username, password)
+		
+		server.sendmail(mail_from, mail_id , msg.as_string())
 
 def run():
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36'}
