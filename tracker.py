@@ -6,7 +6,7 @@ from email.mime.multipart import MIMEMultipart
 
 def send_email(message):
 	mail_from = "ncsucarrental@gmail.com"
-	mail_to = ["araja2@ncsu.edu", "hramach2@ncsu.edu", "nbangal2@ncsu.edu"]
+	mail_to = []
 	
 	username = "ncsucarrental@gmail.com"
 	password = "i@mbatman"
