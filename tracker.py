@@ -6,7 +6,7 @@ from email.mime.multipart import MIMEMultipart
 
 def send_email(message):
 	mail_from = "ncsucarrental@gmail.com"
-	mail_to = []
+	mail_to = ["araja2@ncsu.edu", "nsompal@ncsu.edu"]
 	
 	username = "ncsucarrental@gmail.com"
 	password = "i@mbatman"
@@ -32,7 +32,7 @@ def run():
     fall_2018 = '2188'
     msg = ''
 
-    course_list = [{'code':'501', 'strength':'0/80'},{'code':'522', 'strength':'0/120'}]
+    course_list = [{'code':'501', 'section':'001', 'strength':'0/80'},{'code':'522', 'section':'001', 'strength':'0/120'},{'code':'591', 'section':'002', 'strength':'0/45'},{'code':'515', 'section':'001', 'strength':'0/60'}]
 
     for course in course_list:
         page = requests.post(url, data={'current_strm': fall_2018, 'subject':'CSC - Computer Science',
@@ -44,7 +44,13 @@ def run():
 
         table = soup.find("table", {"class":"table section-table table-striped table-condensed"})
         table_row = table.find_all('tr')
-        row_data = table_row[2].find_all('td')
+        #Handle multiple sections
+        if course['section'] == '001':
+            row_data = table_row[2].find_all('td')
+        else:
+            row_data = table_row[3].find_all('td')
+        			
+        class_section = row_data[0]
         class_strength_status = row_data[3]
         print(class_strength_status)
 
@@ -52,7 +58,7 @@ def run():
             msg += course['code'] + " course now open.\n"
             msg += str(class_strength_status);
         else:
-            print(course['code'] + " course still closed.\n")
+            print(course['code'] + " :" + course['section'] + " course still closed.\n")
 
     if msg:
         send_email(msg)
