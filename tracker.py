@@ -6,7 +6,7 @@ from email.mime.multipart import MIMEMultipart
 
 def send_email(message):
 	mail_from = "ncsucarrental@gmail.com"
-	mail_to = ["araja2@ncsu.edu", "nsompal@ncsu.edu"]
+	mail_to = ["araja2@ncsu.edu", "nsompal@ncsu.edu", "gyelchu@ncsu.edu"]
 	
 	username = "ncsucarrental@gmail.com"
 	password = "i@mbatman"
@@ -51,14 +51,14 @@ def run():
             row_data = table_row[2].find_all('td')
         else:
             row_data = table_row[3].find_all('td')
-        			
+        
         class_section = row_data[0]
         class_strength_status = row_data[3]
         print(class_strength_status)
 
         if course['strength'] not in class_strength_status:
             msg += course['subject'] + ", " + course['code'] + " :" + str(class_section) + " course now open.\n"
-            msg += str(class_strength_status);
+            msg += str(class_strength_status) + "\n\n";
         else:
             print(course['subject'] + ", " + course['code'] + " :" + str(class_section) + " course still closed.\n")
 
