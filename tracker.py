@@ -33,7 +33,7 @@ def run():
     msg = ''
 
     course_list = [{'code':'501', 'section':'001', 'strength':'0/30', 'subject':'BUS - Business Management'}, {'code':'501', 'section':'001', 'strength':'0/80', 'subject':'CSC - Computer Science'},
-	{'code':'522', 'section':'001', 'strength':'0/120', 'subject':'CSC - Computer Science'},{'code':'591', 'section':'002', 'strength':'0/45', 'subject':'CSC - Computer Science'},
+	{'code':'522', 'section':'001', 'strength':'0/120', 'subject':'CSC - Computer Science'},{'code':'591', 'section':'002', 'strength':'0/75', 'subject':'CSC - Computer Science'},
 	{'code':'515', 'section':'001', 'strength':'0/64', 'subject':'CSC - Computer Science'}]
 
     for course in course_list:
