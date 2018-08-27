@@ -34,7 +34,7 @@ def run():
 
     course_list = [{'code':'501', 'section':'001', 'strength':'0/30', 'subject':'BUS - Business Management'}, {'code':'501', 'section':'001', 'strength':'0/80', 'subject':'CSC - Computer Science'},
 	{'code':'522', 'section':'001', 'strength':'0/120', 'subject':'CSC - Computer Science'},{'code':'591', 'section':'003', 'strength':'0/110', 'subject':'CSC - Computer Science'},
-	{'code':'515', 'section':'001', 'strength':'0/64', 'subject':'CSC - Computer Science'}]
+	{'code':'515', 'section':'001', 'strength':'0/64', 'subject':'CSC - Computer Science'},{'code':'520', 'section':'001', 'strength':'0/120', 'subject':'CSC - Computer Science'}]
 
     for course in course_list:
         page = requests.post(url, data={'current_strm': fall_2018, 'subject': course['subject'],
