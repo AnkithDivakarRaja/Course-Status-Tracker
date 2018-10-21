@@ -6,7 +6,7 @@ from email.mime.multipart import MIMEMultipart
 
 def send_email(message):
 	mail_from = "ncsucarrental@gmail.com"
-	mail_to = []
+	mail_to = ["sdhegde@ncsu.edu"]
 	
 	username = "ncsucarrental@gmail.com"
 	password = "i@mbatman"
@@ -30,15 +30,18 @@ def run():
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36'}
     url = 'https://www.acs.ncsu.edu/php/coursecat/search.php'
     fall_2018 = '2188'
+    spring_2019 = '2191'
     msg = ''
 
-    course_list = [{'code':'501', 'section':'001', 'strength':'0/30', 'subject':'BUS - Business Management'}, {'code':'501', 'section':'001', 'strength':'0/80', 'subject':'CSC - Computer Science'},
+    course_list_fall_2018 = [{'code':'501', 'section':'001', 'strength':'0/30', 'subject':'BUS - Business Management'}, {'code':'501', 'section':'001', 'strength':'0/80', 'subject':'CSC - Computer Science'},
 	{'code':'522', 'section':'001', 'strength':'0/120', 'subject':'CSC - Computer Science'},{'code':'591', 'section':'003', 'strength':'0/110', 'subject':'CSC - Computer Science'},
 	{'code':'515', 'section':'001', 'strength':'0/64', 'subject':'CSC - Computer Science'},{'code':'520', 'section':'001', 'strength':'0/120', 'subject':'CSC - Computer Science'}]
 
-    for course in course_list:
-        page = requests.post(url, data={'current_strm': fall_2018, 'subject': course['subject'],
-         'term': fall_2018,'course-inequality':'=' ,'course-number': course['code'] })
+    course_list_spring_2019 = [{'code':'519', 'section':'001', 'strength':'0/45', 'subject':'CSC - Computer Science'}]
+	
+    for course in course_list_spring_2019:
+        page = requests.post(url, data={'current_strm': spring_2019, 'subject': course['subject'],
+         'term': spring_2019,'course-inequality':'=' ,'course-number': course['code'] })
 
         k = page.json()
 
