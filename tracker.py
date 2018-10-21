@@ -37,7 +37,7 @@ def run():
 	{'code':'522', 'section':'001', 'strength':'0/120', 'subject':'CSC - Computer Science'},{'code':'591', 'section':'003', 'strength':'0/110', 'subject':'CSC - Computer Science'},
 	{'code':'515', 'section':'001', 'strength':'0/64', 'subject':'CSC - Computer Science'},{'code':'520', 'section':'001', 'strength':'0/120', 'subject':'CSC - Computer Science'}]
 
-    course_list_spring_2019 = [{'code':'519', 'section':'001', 'strength':'0/45', 'subject':'CSC - Computer Science'}]
+    course_list_spring_2019 = [{'code':'519', 'section':'001', 'strength':'0/45', 'subject':'CSC - Computer Science' }]
 	
     for course in course_list_spring_2019:
         page = requests.post(url, data={'current_strm': spring_2019, 'subject': course['subject'],
